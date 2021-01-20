@@ -4,7 +4,6 @@
 .dart_tool/
 .packages
 build/
-# If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
 # Directory created by dartdoc
@@ -19,3 +18,19 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+
+### macOS ###
+.DS_Store
+
+
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### Others ###
+_*

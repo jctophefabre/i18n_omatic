@@ -1,0 +1,10 @@
+format_version : 1
+
+strings:
+  "Hello World" : "Bonjour le Monde"
+  "Follow the white rabbit!" : null
+  "Single quotes" : "Simple guillemets"
+
+unused_strings:
+  "Please allow me to introduce myself" : "Veuillez me permettre de me présenter"
+  "Double quotes" : "Double guillemets"
