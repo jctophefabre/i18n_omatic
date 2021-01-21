@@ -6,18 +6,18 @@ import 'package:i18n_omatic/i18n_omatic_data.dart';
 
 class I18nOMaticIO {
   static const formatVersion = 1;
-  static const formatVersionKey = "format_version";
-  static const stringsKey = "strings";
-  static const unusedStringsKey = "unused_strings";
+  static const formatVersionKey = 'format_version';
+  static const stringsKey = 'strings';
+  static const unusedStringsKey = 'unused_strings';
 
-  static buildFilename(String langCode, [String ctryCode]) {
-    String fileRoot = "$langCode";
+  static String buildFilename(String langCode, [String ctryCode]) {
+    var fileRoot = '$langCode';
 
     if (ctryCode != null && ctryCode.isNotEmpty) {
-      fileRoot += "_$ctryCode";
+      fileRoot += '_$ctryCode';
     }
 
-    return "$fileRoot.yaml";
+    return '$fileRoot.yaml';
   }
 
   /*
@@ -35,7 +35,7 @@ class I18nOMaticIO {
 
   static Map<String, String> _extractTranslatedString(
       YamlMap data, String strKey) {
-    Map<String, String> strings = Map<String, String>();
+    var strings = <String, String>{};
 
     if (data.containsKey(strKey) && data[strKey].runtimeType == YamlMap) {
       data[strKey].forEach((key, value) {
@@ -51,30 +51,30 @@ class I18nOMaticIO {
 
   static String _buildStringsPairs(
       String entryKey, Map<String, String> values) {
-    String strings = "";
+    var strings = '';
 
     if (values.isNotEmpty) {
-      strings += "$entryKey : \n";
+      strings += '$entryKey : \n';
       values.forEach((key, value) {
-        String escapedKey = key;
+        var escapedKey = key;
         escapedKey = escapedKey.replaceAll("\\'", "'");
-        escapedKey = escapedKey.replaceAll("\\\"", "\"");
-        escapedKey = escapedKey.replaceAll("\"", "\\\"");
+        escapedKey = escapedKey.replaceAll('\\\"', '\"');
+        escapedKey = escapedKey.replaceAll('\"', '\\\"');
 
         // do not add quotes if value is null
         strings += (value == null)
-            ? "  \"$escapedKey\" : null\n"
-            : "  \"$escapedKey\" : \"$value\"\n";
+            ? '  \"$escapedKey\" : null\n'
+            : '  \"$escapedKey\" : \"$value\"\n';
       });
-      strings += "\n";
+      strings += '\n';
     }
     return strings;
   }
 
   static I18nOMaticData loadFromFile(String filePath) {
-    I18nOMaticData i18nData = I18nOMaticData();
+    var i18nData = I18nOMaticData();
 
-    String content = "";
+    var content = '';
     content = File(filePath).readAsStringSync();
 
     if (content.isNotEmpty) {
@@ -94,12 +94,12 @@ class I18nOMaticIO {
   }
 
   static void writeToFile(String filePath, I18nOMaticData data) {
-    String content = "";
+    var content = '';
 
-    content += "# file updated using i18n_omatic\n";
-    content += "\n";
-    content += "format_version : ${I18nOMaticIO.formatVersion}\n";
-    content += "\n";
+    content += '# file updated using i18n_omatic\n';
+    content += '\n';
+    content += 'format_version : ${I18nOMaticIO.formatVersion}\n';
+    content += '\n';
     content += _buildStringsPairs(stringsKey, data.existingStrings);
     content += _buildStringsPairs(unusedStringsKey, data.unusedStrings);
 

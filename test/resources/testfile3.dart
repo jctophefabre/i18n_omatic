@@ -1,18 +1,20 @@
 void main() {
-  String testSingle = 'Ignored Single quotes';
-  String testDouble = "Ignored Double quotes";
+  var testSingle = 'Ignored Single quotes';
+  // ignore: prefer_single_quotes
+  var testDouble = "Ignored Double quotes";
 
-  String testSingleDouble = 'Ignored Double quotes in "single" quotes';
-  String testDoubleSingle = "Ignored Single quotes in 'double' quotes";
+  var testSingleDouble = 'Ignored Double quotes in "single" quotes';
+  var testDoubleSingle = "Ignored Single quotes in 'double' quotes";
 
-  String testSingleEscaped = 'Ignored Double quotes in \'single\‘ quotes';
-  String testDoubleEscaped = "Ignored Single quotes in \"double\" quotes";
+  var testSingleEscaped = 'Ignored Double quotes in \"single\" quotes';
+  var testDoubleEscaped = "Ignored Single quotes in \'double\' quotes";
 
-  String testSingleMulti = '''Ignored A
+  var testSingleMulti = '''Ignored A
 multiline
 string''';
 
-  String testDoubleMulti = """
+  // ignore: prefer_single_quotes
+  var testDoubleMulti = """
 Ignored 
 Another
 multiline

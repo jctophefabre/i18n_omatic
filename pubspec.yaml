@@ -3,7 +3,7 @@ description: A package for managing translations with automatic scanning of sour
 homepage: https://github.com/jctophefabre/i18n_omatic
 issue_tracker: https://github.com/jctophefabre/i18n_omatic/issues
 
-version: 0.1.1
+version: 0.1.2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -20,3 +20,4 @@ dependencies:
 
 dev_dependencies:
   test: ^1.15.7
+  pedantic: ^1.9.0

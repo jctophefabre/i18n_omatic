@@ -29,37 +29,37 @@ class I18nOMatic {
 
   Future<void> load() async {
     try {
-      String filePath = "assets/i18nomatic/" +
+      var filePath = 'assets/i18nomatic/' +
           I18nOMaticIO.buildFilename(
-              locale.languageCode + "_" + locale.countryCode);
-      String content = await rootBundle.loadString(filePath);
+              locale.languageCode + '_' + locale.countryCode);
+      var content = await rootBundle.loadString(filePath);
 
       _localizedStrings =
           I18nOMaticIO.getTranslatedStringsFromYamlContent(content);
-    } catch (e) {}
+    } catch (e) {
+      // ignored
+    }
   }
 
   String tr(String strToTranslate, [Map<String, dynamic> args]) {
-    String strTranslated = strToTranslate;
+    var strTranslated = strToTranslate;
 
     if (_localizedStrings != null &&
         _localizedStrings.containsKey(strToTranslate)) {
-      String foundStr = _localizedStrings[strToTranslate];
+      var foundStr = _localizedStrings[strToTranslate];
       if (foundStr != null) {
         // TODO to refactor for a better implementation
         strTranslated = foundStr;
       }
     }
 
-    if (args == null || args.length == 0) {
+    if (args == null || args.isEmpty) {
       return strTranslated;
     }
 
     args.forEach((key, value) {
-      if (value == null) {
-        value = "";
-      }
-      strTranslated = strTranslated.replaceAll("%$key", value.toString());
+      value ??= '';
+      strTranslated = strTranslated.replaceAll('%$key', value.toString());
     });
 
     return strTranslated;
@@ -76,7 +76,7 @@ class _I18nOMaticDelegate extends LocalizationsDelegate<I18nOMatic> {
 
   @override
   Future<I18nOMatic> load(Locale locale) async {
-    I18nOMatic localizations = I18nOMatic._init(locale);
+    var localizations = I18nOMatic._init(locale);
     await localizations.load();
     return localizations;
   }
