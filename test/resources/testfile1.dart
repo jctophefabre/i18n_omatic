@@ -1,21 +1,24 @@
 import 'package:i18n_omatic/i18n_omatic.dart';
 
 void main() {
-  String testSingle = I18nOMatic.of(null).tr('Single quotes');
-  String testDouble = I18nOMatic.instance.tr("Double quotes");
+  var testSingle = I18nOMatic.of(null).tr('Single quotes');
+  // ignore: prefer_single_quotes
+  var testDouble = I18nOMatic.instance.tr("Double quotes");
 
-  String testSingleDouble = 'Double quotes in "single" quotes'.tr();
-  String testDoubleSingle = "Single quotes in 'double' quotes".tr();
+  var testSingleDouble = 'Double quotes in "single" quotes'.tr();
+  var testDoubleSingle = "Single quotes in 'double' quotes".tr();
 
-  String testSingleEscaped = 'Single quotes in \'single\' quotes'.tr();
-  String testDoubleEscaped = "Double quotes in \"double\" quotes".tr();
+  var testSingleEscaped = 'Single quotes in \'single\' quotes'.tr();
+  // ignore: prefer_single_quotes
+  var testDoubleEscaped = "Double quotes in \"double\" quotes".tr();
 
-  String testSingleMulti = '''A
+  var testSingleMulti = '''A
 multiline
 string'''
       .tr();
 
-  String testDoubleMulti = I18nOMatic.of(null).tr("""
+  // ignore: prefer_single_quotes
+  var testDoubleMulti = I18nOMatic.of(null).tr("""
 Another
 multiline
 string""");
