@@ -1,3 +1,10 @@
+## 0.2.0
+
+* Added usage documentation in README file
+* Added example based on default flutter example project
+* Fixed typo in class name
+
+
 ## 0.1.2
 
 * Added pedantic package in dev_dependencies

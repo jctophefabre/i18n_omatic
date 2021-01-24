@@ -1,0 +1,30 @@
+name: example
+description: An example project for the i18n_omatic package.
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  i18n_omatic:
+    path: ../
+
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/i18nomatic/fr_FR.yaml
+    - assets/i18nomatic/es_ES.yaml  

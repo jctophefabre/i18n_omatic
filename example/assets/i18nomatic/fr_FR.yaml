@@ -1,0 +1,10 @@
+# file updated using i18n_omatic
+
+format_version : 1
+
+strings : 
+  "i18n-o-matic Demo" : "Démo de i18n_omatic"
+  "You have pushed the button" : "Vous avez appuyé sur le bouton"
+  "%count times" : "%count fois"
+  "Increment" : "Incrémenter"
+
