@@ -85,6 +85,6 @@ class _I18nOMaticDelegate extends LocalizationsDelegate<I18nOMatic> {
   bool shouldReload(_I18nOMaticDelegate old) => false;
 }
 
-extension I18nOMatricExt on String {
+extension I18nOMaticExt on String {
   String tr([Map<String, dynamic> args]) => I18nOMatic.instance.tr(this, args);
 }
