@@ -6,7 +6,7 @@ description: >
   homepage: https://github.com/jctophefabre/i18n_omatic
 issue_tracker: https://github.com/jctophefabre/i18n_omatic/issues
 
-version: 0.2.1-beta2
+version: 0.2.1-beta3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
