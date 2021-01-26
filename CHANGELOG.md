@@ -1,3 +1,11 @@
+## 0.2.1
+
+* Added display of help for the update command-line tool
+* Updated package description
+* Removed useless test in the example
+* Fixed crash when translations directory does not exist
+
+
 ## 0.2.0
 
 * Added usage documentation in README file

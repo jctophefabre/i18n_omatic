@@ -3,10 +3,10 @@ description: >
   i18n-o-matic makes translations easier in Flutter apps 
   with automatic search for translatable strings in the source code.
 
-  homepage: https://github.com/jctophefabre/i18n_omatic
+homepage: https://github.com/jctophefabre/i18n_omatic
 issue_tracker: https://github.com/jctophefabre/i18n_omatic/issues
 
-version: 0.2.1-beta4
+version: 0.2.1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
