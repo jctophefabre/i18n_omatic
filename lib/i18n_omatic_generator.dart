@@ -27,7 +27,7 @@ class I18nOMaticGenerator {
   }
 
   void _scanSourceFile(String fileName) {
-    print('### Scanning file $fileName');
+    print('$fileName');
 
     try {
       final file = File(fileName);
@@ -78,7 +78,7 @@ class I18nOMaticGenerator {
     try {
       i18nData = I18nOMaticIO.loadFromFile(_translationsFiles[langCode]);
     } catch (e) {
-      print('Cannot load translations for $langCode.');
+      print('Unable to load translations for $langCode.');
     }
 
     print('Processing strings');
@@ -114,11 +114,13 @@ class I18nOMaticGenerator {
     try {
       I18nOMaticIO.writeToFile(_translationsFiles[langCode], i18nData);
     } catch (e) {
-      print('Cannot write translations for $langCode.');
+      print('Unable to write translations for $langCode.');
     }
   }
 
   void scanSourcesFiles() {
+    print('### Scanning source files');
+
     for (var file in _srcFiles) {
       _scanSourceFile(file);
     }
@@ -133,12 +135,15 @@ class I18nOMaticGenerator {
   }
 
   void discoverTranslationsFiles() {
-    final filesToScan =
-        Glob(path.join(_outDir, I18nOMaticIO.buildFilename('*'))).listSync();
-
-    for (var f in filesToScan) {
-      var langCode = path.basenameWithoutExtension(f.path);
-      addLang(langCode, f.path);
+    try {
+      final filesToScan =
+          Glob(path.join(_outDir, I18nOMaticIO.buildFilename('*'))).listSync();
+      for (var f in filesToScan) {
+        var langCode = path.basenameWithoutExtension(f.path);
+        addLang(langCode, f.path);
+      }
+    } catch (e) {
+      print('Unable to access to translations files / ${e.toString()}');
     }
   }
 
@@ -150,11 +155,11 @@ class I18nOMaticGenerator {
 
   void run() {
     discoverSourcesFiles();
-
     discoverTranslationsFiles();
 
-    scanSourcesFiles();
-
-    updateTranslationsFiles();
+    if (_translationsFiles.isNotEmpty) {
+      scanSourcesFiles();
+      updateTranslationsFiles();
+    }
   }
 }
