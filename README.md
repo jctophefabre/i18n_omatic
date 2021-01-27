@@ -148,7 +148,10 @@ You are encouraged to clean up these files before releasing a new version of you
 
 ## Known limitations
 
-* `i18n_omatic` does not support currently multiline strings
+Currently, `i18n_omatic` does not support
+* multiline strings
+* left-to-right languages such as Arabic or Hebrew
+* automatic management of plural forms
 
 
 ## Author

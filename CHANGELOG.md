@@ -1,3 +1,9 @@
+## 0.2.2
+
+* Introduced API documentation
+* Cleaned code
+
+
 ## 0.2.1
 
 * Added display of help for the update command-line tool

@@ -4,7 +4,7 @@ import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 
-import 'package:i18n_omatic/i18n_omatic_generator.dart';
+import 'package:i18n_omatic/src/i18n_omatic_generator.dart';
 
 void recreateDir(String dirPath) {
   final dir = Directory(dirPath);

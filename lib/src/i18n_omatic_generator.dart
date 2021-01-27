@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:i18n_omatic/i18n_omatic_data.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
 
-import 'package:i18n_omatic/i18n_omatic_io.dart';
+import 'package:i18n_omatic/src/i18n_omatic_data.dart';
+import 'package:i18n_omatic/src/i18n_omatic_io.dart';
 
 class I18nOMaticGenerator {
   String _srcDir = '';
