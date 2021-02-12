@@ -1,5 +1,7 @@
 import 'package:args/args.dart';
 
+import 'dart:io';
+
 import 'package:i18n_omatic/src/i18n_omatic_generator.dart';
 
 void main(List<String> args) {
@@ -35,9 +37,11 @@ void main(List<String> args) {
     if (parsedArgs['help']) {
       print(parser.usage);
     } else {
-      var gen =
-          I18nOMaticGenerator(parsedArgs['src-dir'], parsedArgs['out-dir']);
-      gen.run();
+      Directory(parsedArgs['out-dir']).create(recursive: true).then((e) {
+        var gen =
+            I18nOMaticGenerator(parsedArgs['src-dir'], parsedArgs['out-dir']);
+        gen.run();
+      });
     }
   }
 }
