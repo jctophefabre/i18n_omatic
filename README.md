@@ -145,6 +145,40 @@ unused_strings:
 Once you are sure you will not use these strings anaymore, you can remove them from the yaml files. 
 You are encouraged to clean up these files before releasing a new version of your application.
 
+## How to test a Widget which uses i18n_omatic
+
+ You can use [Mockito package](https://pub.dev/packages/mockito) to mock the translation function `tr()` :
+
+ ```dart
+import 'package:i18n_omatic/i18n_omatic.dart';
+import 'package:mockito/mockito.dart';
+
+class MockI18nOMatic extends Mock implements I18nOMatic {}
+
+class MockSetUp {
+  static void mockI18nOMatic() {
+    I18nOMatic.instance = MockI18nOMatic();
+    when(I18nOMatic.instance.tr(any, any)).thenAnswer((realInvocation) {
+      var strTranslated = realInvocation.positionalArguments[0].toString();
+      if (realInvocation.positionalArguments[1] != null) {
+        realInvocation.positionalArguments[1].forEach((String key, String value) {
+          value ??= '';
+          strTranslated = strTranslated.replaceAll('%$key', value.toString());
+        });
+      }
+      return strTranslated;
+    });
+  }
+}
+```
+and call `MockSetUp.mockI18nOMatic()` at the Flutter Widget test beginning :
+```dart
+void main() {
+  setUp(()  {
+    MockSetUp.mockI18nOMatic();
+  });
+  [...]
+```
 
 ## Known limitations
 
