@@ -1,6 +1,7 @@
 # i18n-o-matic
 
-[![Pub Version](https://img.shields.io/pub/v/i18n_omatic)](https://pub.dev/packages/i18n_omatic)  
+[![Pub Version](https://img.shields.io/pub/v/i18n_omatic?color=blue)](https://pub.dev/packages/i18n_omatic) 
+![CI](https://github.com/jctophefabre/i18n_omatic/workflows/CI/badge.svg)  
 
 i18n-o-matic is a dart package to make translations easier in Flutter apps. 
 It provides the ability to automatically search for translatable strings in the source code and builds translations tables for each language.
@@ -147,7 +148,7 @@ You are encouraged to clean up these files before releasing a new version of you
 
 ## How to test a Widget which uses i18n_omatic
 
- You can use [Mockito package](https://pub.dev/packages/mockito) to mock the translation function `tr()` :
+ You can use the [Mockito package](https://pub.dev/packages/mockito) to mock the translation of the `tr()` function :
 
  ```dart
 import 'package:i18n_omatic/i18n_omatic.dart';
@@ -171,7 +172,7 @@ class MockSetUp {
   }
 }
 ```
-and call `MockSetUp.mockI18nOMatic()` at the Flutter Widget test beginning :
+and call `MockSetUp.mockI18nOMatic()` at the beginning of the Flutter widget test  :
 ```dart
 void main() {
   setUp(()  {
@@ -190,4 +191,8 @@ Currently, `i18n_omatic` does not support
 
 ## Author
 
-The i18n-o-matic package is developped by Jean-Christophe Fabre.
+The i18n-o-matic package is developped by [Jean-Christophe Fabre](https://github.com/jctophefabre).
+
+Contributors:
+
+* [Aurélien Joubert](https://github.com/Jouby) 💻 📖

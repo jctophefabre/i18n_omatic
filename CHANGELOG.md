@@ -1,3 +1,9 @@
+## 0.3.0
+
+* Added automatic creation of translation directory in update tool
+* Updated README file : Mockito example, badges, contributors 
+
+
 ## 0.2.2
 
 * Introduced API documentation
