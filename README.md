@@ -1,7 +1,7 @@
 # i18n-o-matic
 
 [![Pub Version](https://img.shields.io/pub/v/i18n_omatic?color=blue)](https://pub.dev/packages/i18n_omatic) 
-![CI](https://github.com/jctophefabre/i18n_omatic/workflows/CI/badge.svg)  
+[![CI](https://github.com/jctophefabre/i18n_omatic/workflows/CI/badge.svg)](https://github.com/jctophefabre/i18n_omatic/actions/workflows/ci.yml)
 
 i18n-o-matic is a dart package to make translations easier in Flutter apps. 
 It provides the ability to automatically search for translatable strings in the source code and builds translations tables for each language.
