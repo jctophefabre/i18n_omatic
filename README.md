@@ -7,10 +7,14 @@ i18n-o-matic is a dart package to make translations easier in Flutter apps.
 It provides the ability to automatically search for translatable strings in the source code and builds translations tables for each language.
 This approach is inspired by the one used in the [Qt framework](https://doc.qt.io/qt-5/internationalization.html).
 
-* 🏖  Painless translation workflow
-* 🔍  Automatic discovery of translatable strings
-* 👩‍💻  Human readable YAML format for translations files
-* #️⃣  Formatable strings for variable substitutions
+* :beach_umbrella:  Painless translation workflow
+* :mag_right:  Automatic discovery of translatable strings
+* :woman_technologist:  Human readable YAML format for translations files
+* :hash:  Formatable strings for variable substitutions
+
+
+
+Contributions to this package are welcome :tada::+1:, see the [CONTRIBUTING Guidelines](https://github.com/jctophefabre/i18n_omatic/blob/master/CONTRIBUTING.md) for more information. 
 
 
 ## How it works
