@@ -1,6 +1,6 @@
-import 'package:args/args.dart';
-
 import 'dart:io';
+
+import 'package:args/args.dart';
 
 import 'package:i18n_omatic/src/i18n_omatic_generator.dart';
 
