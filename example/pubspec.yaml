@@ -12,10 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  i18n_omatic:
-    path: ../
-
   cupertino_icons: ^1.0.0
+  i18n_omatic: # to set to required version
+    path: ../  # to remove
 
 flutter:
   uses-material-design: true
@@ -23,4 +22,5 @@ flutter:
   assets:
     - assets/
     - assets/i18nomatic/fr_FR.yaml
-    - assets/i18nomatic/es_ES.yaml  
+    - assets/i18nomatic/es_ES.yaml
+    - assets/i18nomatic/de_DE.yaml

@@ -1,3 +1,11 @@
+## 0.4.0
+
+* Added automatic creation of files declared in pubspec.yaml 
+  if they do not exist
+* Updated example
+* Updated README.md
+
+
 ## 0.3.0
 
 * Added automatic creation of translation directory in update tool

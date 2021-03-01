@@ -45,9 +45,12 @@ String birthdayMsg = 'Happy birthday %name, you are %age years old'.tr({name: 'P
 
 ### Prepare configuration for translations
 
-Once the strings to translate are marked, you have to create an empty YAML file for each language you want to translate strings into and name it with the "language_country" code (e.g. fr_FR.yaml for France, es_ES.yaml for Spain, ...). For Flutter applications, these files must be located in the `assets/i18nomatic` directory and added in the corresponding section in the pubspec.yaml configuration file.
+Once the strings to translate are marked, you have to edit the pubspec.yaml configuration file of your Flutter application and add an asset file for each translation language.
+These files are located in the `assets/i18nomatic` directory 
+and named with the "language_country" code (e.g. fr_FR.yaml for France, es_ES.yaml for Spain, ...). 
+They will be created and updated using the update tool (see [below](#automatically-build-translation-tables))
 
-Example below is the pubspec.yaml section for french and spanish languages, once the files have been effectively created:
+Example of the pubspec.yaml section for french and spanish languages:
 ```yaml
 flutter:
   assets:
@@ -57,7 +60,7 @@ flutter:
 ```
 
 For iOS, the file `ios/Runner/info.plist` must be updated to register the supported locales. 
-The `CFBundleLocalizations` must be added or updated with an array of the supported languages. The example below is an example for french and spanish languages:
+The `CFBundleLocalizations` must be added or updated with an array of the supported languages. Example for french and spanish languages:
 ```xml
 <key>CFBundleLocalizations</key>
 <array>
@@ -68,12 +71,12 @@ The `CFBundleLocalizations` must be added or updated with an array of the suppor
 
 ### Automatically build translation tables
 
-The `i18n_omatic` package provides a command line tool that will scan the source code of the application and search for the translatable strings. Then, it will update the translation files with the found strings.
+The `i18n_omatic` package provides a command line tool that will scan the source code of the application and search for the translatable strings. Then, it will create or update the translation files with the found strings.
 The following command line has to be run in the root directory of the project:
 ```
 dart pub run i18n_omatic:update
 ```
-By default, this command line tool wil scan the `lib` directory recursively, looking for `.dart` files, and will update the translations files located in the `assets/i18nomatic` directory.  
+By default, this command line tool wil scan the `lib` directory recursively, looking for `.dart` files, and will update the translations files located in the `assets/i18nomatic` directory.  If a translation file declared in the pubspec.yaml file does not exist yet, it is automatically created.
 
 You can run this tool whenever needed to update the translation tables 
 with the newly translatable strings introduced in your source code. The previously translated string will remain in the translation files.

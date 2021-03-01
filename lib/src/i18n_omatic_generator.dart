@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
+import 'package:yaml/yaml.dart';
 
 import 'package:i18n_omatic/src/i18n_omatic_data.dart';
 import 'package:i18n_omatic/src/i18n_omatic_io.dart';
@@ -73,12 +74,19 @@ class I18nOMaticGenerator {
 
     I18nOMaticData i18nData;
 
-    print('Loading existing translated strings');
+    // Create emptyfile
+    if (!File(_translationsFiles[langCode]).existsSync()) {
+      print('Creating empty translation file');
+      File(_translationsFiles[langCode]).createSync(recursive: true);
+      i18nData = I18nOMaticData();
+    } else {
+      print('Loading existing translated strings');
 
-    try {
-      i18nData = I18nOMaticIO.loadFromFile(_translationsFiles[langCode]);
-    } catch (e) {
-      print('Unable to load translations for $langCode.');
+      try {
+        i18nData = I18nOMaticIO.loadFromFile(_translationsFiles[langCode]);
+      } catch (e) {
+        print('Unable to load translations for $langCode.');
+      }
     }
 
     print('Processing strings');
@@ -135,6 +143,42 @@ class I18nOMaticGenerator {
   }
 
   void discoverTranslationsFiles() {
+    // discover files from flutter/assets section in app pubspec file
+    final pubspecPath = path.join(Directory.current.path, 'pubspec.yaml');
+    final pubspecFile = File(pubspecPath);
+
+    if (pubspecFile.existsSync()) {
+      try {
+        var content = pubspecFile.readAsStringSync();
+        var pattern = RegExp(r'assets\/i18nomatic\/([a-z]{2}_[A-Z]{2})\.yaml');
+
+        if (content.isNotEmpty) {
+          var data = loadYaml(content);
+
+          if (data != null) {
+            if (data.containsKey('flutter') &&
+                data['flutter'].containsKey('assets')) {
+              var assets = data['flutter']['assets'];
+              if (assets.runtimeType == YamlList) {
+                assets.forEach((value) {
+                  var match = pattern.firstMatch(value);
+
+                  if (match != null &&
+                      match.groupCount >= 1 &&
+                      match.group(1).isNotEmpty) {
+                    addLang(match.group(1), value);
+                  }
+                });
+              }
+            }
+          }
+        }
+      } catch (e) {
+        print('Unable to read assets from pubspec.yaml / ${e.toString()}');
+      }
+    }
+
+    // discover existing files
     try {
       final filesToScan =
           Glob(path.join(_outDir, I18nOMaticIO.buildFilename('*'))).listSync();
@@ -143,7 +187,8 @@ class I18nOMaticGenerator {
         addLang(langCode, f.path);
       }
     } catch (e) {
-      print('Unable to access to translations files / ${e.toString()}');
+      print(
+          'Unable to access to existing translations files / ${e.toString()}');
     }
   }
 

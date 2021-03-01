@@ -39,3 +39,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# German language as i18nomatic example file
+assets/i18nomatic/de_DE.yaml
