@@ -1,0 +1,5 @@
+analyzer:
+  errors:
+  # allow for asset_does_not_exist
+    unrecognized_error_code: ignore
+    asset_does_not_exist: ignore

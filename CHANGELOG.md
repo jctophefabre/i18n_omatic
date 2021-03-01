@@ -1,3 +1,10 @@
+## 0.4.1
+
+* Removed unused dependencies in CI configuration
+* Updated options for static analysis of example source code
+* Updated assets declaration in example
+
+
 ## 0.4.0
 
 * Added automatic creation of files declared in pubspec.yaml 

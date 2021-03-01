@@ -21,6 +21,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/i18nomatic/
     - assets/i18nomatic/fr_FR.yaml
     - assets/i18nomatic/es_ES.yaml
     - assets/i18nomatic/de_DE.yaml
