@@ -1,3 +1,8 @@
+## 0.5.0
+
+* Updated versions of dependencies
+
+
 ## 0.4.1
 
 * Removed unused dependencies in CI configuration
