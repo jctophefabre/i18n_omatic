@@ -6,10 +6,10 @@ description: >
 homepage: https://github.com/jctophefabre/i18n_omatic
 issue_tracker: https://github.com/jctophefabre/i18n_omatic/issues
 
-version: 0.5.0
+version: 0.6.0
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:

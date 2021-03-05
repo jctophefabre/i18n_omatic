@@ -9,17 +9,17 @@ import 'package:i18n_omatic/src/i18n_omatic_data.dart';
 import 'package:i18n_omatic/src/i18n_omatic_io.dart';
 
 class I18nOMaticGenerator {
-  String _srcDir = '';
+  String? _srcDir = '';
 
-  String _outDir = '';
+  String? _outDir = '';
 
   final List<String> _srcFiles = <String>[];
 
   final List<String> _foundStrings = <String>[];
 
-  final Map<String, String> _translationsFiles = <String, String>{};
+  final Map<String?, String> _translationsFiles = <String?, String>{};
 
-  I18nOMaticGenerator(String srcDir, String outDir) {
+  I18nOMaticGenerator(String? srcDir, String? outDir) {
     _srcDir = srcDir;
     _outDir = outDir;
   }
@@ -45,13 +45,13 @@ class I18nOMaticGenerator {
       rules.forEach((rule) {
         Iterable<Match> matches = rule.allMatches(contents);
         matches.forEach((match) {
-          if (match.groupCount >= 1 && match.group(1).isNotEmpty) {
+          if (match.groupCount >= 1 && match.group(1)!.isNotEmpty) {
             var currentStr = match.group(1);
             // exclude """ and ''' that are not correctly handled yet
             if (currentStr != "'" && currentStr != '"') {
               // replace escape chars associated to quotes
               currentStr =
-                  currentStr.replaceAll('\\\"', '\"').replaceAll('\\\'', '\'');
+                  currentStr!.replaceAll('\\\"', '\"').replaceAll('\\\'', '\'');
               _foundStrings.add(currentStr);
             }
           }
@@ -66,25 +66,25 @@ class I18nOMaticGenerator {
     _srcFiles.add(filePath);
   }
 
-  void addLang(String langCode, String filePath) {
+  void addLang(String? langCode, String filePath) {
     _translationsFiles[langCode] = filePath;
   }
 
-  void _updateTranslationFile(String langCode) {
+  void _updateTranslationFile(String? langCode) {
     print('### Updating translation for $langCode');
 
-    I18nOMaticData i18nData;
+    late I18nOMaticData i18nData;
 
     // Create emptyfile
-    if (!File(_translationsFiles[langCode]).existsSync()) {
+    if (!File(_translationsFiles[langCode]!).existsSync()) {
       print('Creating empty translation file');
-      File(_translationsFiles[langCode]).createSync(recursive: true);
+      File(_translationsFiles[langCode]!).createSync(recursive: true);
       i18nData = I18nOMaticData();
     } else {
       print('Loading existing translated strings');
 
       try {
-        i18nData = I18nOMaticIO.loadFromFile(_translationsFiles[langCode]);
+        i18nData = I18nOMaticIO.loadFromFile(_translationsFiles[langCode]!);
       } catch (e) {
         print('Unable to load translations for $langCode.');
       }
@@ -121,7 +121,7 @@ class I18nOMaticGenerator {
     print(
         'Writing ${i18nData.existingStrings.length} existing strings and ${i18nData.unusedStrings.length} unused strings in translations file');
     try {
-      I18nOMaticIO.writeToFile(_translationsFiles[langCode], i18nData);
+      I18nOMaticIO.writeToFile(_translationsFiles[langCode]!, i18nData);
     } catch (e) {
       print('Unable to write translations for $langCode.');
     }
@@ -136,7 +136,7 @@ class I18nOMaticGenerator {
   }
 
   void discoverSourcesFiles() {
-    final filesToScan = Glob(path.join(_srcDir, '**.dart')).listSync();
+    final filesToScan = Glob(path.join(_srcDir!, '**.dart')).listSync();
 
     for (var f in filesToScan) {
       addSourceFile(f.path);
@@ -166,7 +166,7 @@ class I18nOMaticGenerator {
 
                   if (match != null &&
                       match.groupCount >= 1 &&
-                      match.group(1).isNotEmpty) {
+                      match.group(1)!.isNotEmpty) {
                     addLang(match.group(1), value);
                   }
                 });
@@ -182,7 +182,7 @@ class I18nOMaticGenerator {
     // discover existing files
     try {
       final filesToScan =
-          Glob(path.join(_outDir, I18nOMaticIO.buildFilename('*'))).listSync();
+          Glob(path.join(_outDir!, I18nOMaticIO.buildFilename('*'))).listSync();
       for (var f in filesToScan) {
         var langCode = path.basenameWithoutExtension(f.path);
         addLang(langCode, f.path);

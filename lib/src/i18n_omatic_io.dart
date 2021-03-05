@@ -13,7 +13,7 @@ class I18nOMaticIO {
 
   /// Builds the translations YAML file name
   /// for the given language code named [langCode] and country code named [ctryCode]
-  static String buildFilename(String langCode, [String ctryCode]) {
+  static String buildFilename(String langCode, [String? ctryCode]) {
     var fileRoot = '$langCode';
 
     if (ctryCode != null && ctryCode.isNotEmpty) {
@@ -33,9 +33,9 @@ class I18nOMaticIO {
 
   // unused_strings: # strings already present in the translation file but not found in the source code
   //   "Please allow me to introduce myself" : "Veuillez me permettre de me présenter"
-  static Map<String, String> _extractTranslatedString(
+  static Map<String, String?> _extractTranslatedString(
       YamlMap data, String strKey) {
-    var strings = <String, String>{};
+    var strings = <String, String?>{};
 
     if (data.containsKey(strKey) && data[strKey].runtimeType == YamlMap) {
       data[strKey].forEach((key, value) {
@@ -50,7 +50,7 @@ class I18nOMaticIO {
   }
 
   static String _buildStringsPairs(
-      String entryKey, Map<String, String> values) {
+      String entryKey, Map<String, String?> values) {
     var strings = '';
 
     if (values.isNotEmpty) {
@@ -115,12 +115,12 @@ class I18nOMaticIO {
   ///
   /// The returned key-value map contains the translated strings (values)
   /// with the corresponding source strings (keys)
-  static Map<String, String> getTranslatedStringsFromYamlContent(
+  static Map<String, String?>? getTranslatedStringsFromYamlContent(
       String content) {
     try {
-      Map<String, String> data;
+      Map<String, String?>? data;
 
-      if (content != null && content.isNotEmpty) {
+      if (content.isNotEmpty) {
         var yamlData = loadYaml(content);
 
         if (yamlData != null) {

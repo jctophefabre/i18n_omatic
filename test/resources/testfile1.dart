@@ -1,7 +1,7 @@
 import 'package:i18n_omatic/i18n_omatic.dart';
 
 void main() {
-  var testSingle = I18nOMatic.of(null).tr('Single quotes');
+  var testSingle = I18nOMatic.instance.tr('Single quotes');
   // ignore: prefer_single_quotes
   var testDouble = I18nOMatic.instance.tr("Double quotes");
 
@@ -18,7 +18,7 @@ string'''
       .tr();
 
   // ignore: prefer_single_quotes
-  var testDoubleMulti = I18nOMatic.of(null).tr("""
+  var testDoubleMulti = I18nOMatic.instance.tr("""
 Another
 multiline
 string""");

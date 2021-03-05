@@ -18,13 +18,13 @@ import 'package:i18n_omatic/src/i18n_omatic_io.dart';
 
 /// Manages the automatic translation of strings in Flutter apps.
 class I18nOMatic {
-  Map<String, String> _localizedStrings;
+  Map<String, String?>? _localizedStrings;
 
   /// The current locale set on initialization
-  Locale locale;
+  Locale? locale;
 
   /// The instance created on initialization.
-  static I18nOMatic instance;
+  static late I18nOMatic instance;
 
   I18nOMatic(this.locale);
 
@@ -37,7 +37,7 @@ class I18nOMatic {
   static const LocalizationsDelegate<I18nOMatic> delegate =
       _I18nOMaticDelegate();
 
-  static I18nOMatic of(BuildContext context) {
+  static I18nOMatic? of(BuildContext context) {
     return Localizations.of<I18nOMatic>(context, I18nOMatic);
   }
 
@@ -45,7 +45,7 @@ class I18nOMatic {
     try {
       var filePath = 'assets/i18nomatic/' +
           I18nOMaticIO.buildFilename(
-              locale.languageCode + '_' + locale.countryCode);
+              locale!.languageCode + '_' + locale!.countryCode!);
       var content = await rootBundle.loadString(filePath);
 
       _localizedStrings =
@@ -56,12 +56,12 @@ class I18nOMatic {
   }
 
   /// See [I18nOMaticExt.tr()] for description.
-  String tr(String strToTranslate, [Map<String, dynamic> args]) {
+  String tr(String strToTranslate, [Map<String, dynamic>? args]) {
     var strTranslated = strToTranslate;
 
     if (_localizedStrings != null &&
-        _localizedStrings.containsKey(strToTranslate)) {
-      var foundStr = _localizedStrings[strToTranslate];
+        _localizedStrings!.containsKey(strToTranslate)) {
+      var foundStr = _localizedStrings![strToTranslate];
       if (foundStr != null) {
         // TODO to refactor for a better implementation
         strTranslated = foundStr;
@@ -113,5 +113,5 @@ extension I18nOMaticExt on String {
   /// // untranslated string value : 'Happy birthday Peter, you are 21 years old'
   /// // french string value : 'Bon anniversaire Peter, tu as 21 ans'
   /// ```
-  String tr([Map<String, dynamic> args]) => I18nOMatic.instance.tr(this, args);
+  String tr([Map<String, dynamic>? args]) => I18nOMatic.instance.tr(this, args);
 }

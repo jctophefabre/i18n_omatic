@@ -1,3 +1,8 @@
+## 0.6.0
+
+* Introduced null safety
+
+
 ## 0.5.0
 
 * Updated versions of dependencies
