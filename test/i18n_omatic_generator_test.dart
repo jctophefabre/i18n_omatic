@@ -27,8 +27,8 @@ void deployResources(String globExpr, String destPath) {
 }
 
 void main() {
-  var testGen =
-      I18nOMaticGenerator('test/_exec/lib', 'test/_exec/assets/i18nomatic');
+  var testGen = I18nOMaticGenerator(
+      'test/_exec/lib', 'test/_exec/assets/i18nomatic', false);
 
   setUpAll(() {
     recreateDir('test/_exec/lib');
