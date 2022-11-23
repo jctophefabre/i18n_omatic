@@ -18,6 +18,11 @@ void main(List<String> args) {
       help: 'path to translations files directory',
     )
     ..addFlag(
+      'sort',
+      negatable: false,
+      help: 'sort output',
+    )
+    ..addFlag(
       'help',
       negatable: false,
       help: 'displays this help message',
@@ -38,8 +43,11 @@ void main(List<String> args) {
       print(parser.usage);
     } else {
       Directory(parsedArgs['out-dir']).create(recursive: true).then((e) {
-        var gen =
-            I18nOMaticGenerator(parsedArgs['src-dir'], parsedArgs['out-dir']);
+        var gen = I18nOMaticGenerator(
+          parsedArgs['src-dir'],
+          parsedArgs['out-dir'],
+          parsedArgs['sort'],
+        );
         gen.run();
       });
     }
