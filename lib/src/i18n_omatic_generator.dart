@@ -13,15 +13,18 @@ class I18nOMaticGenerator {
 
   String? _outDir = '';
 
+  bool _sortOutput = false;
+
   final List<String> _srcFiles = <String>[];
 
   final List<String> _foundStrings = <String>[];
 
   final Map<String?, String> _translationsFiles = <String?, String>{};
 
-  I18nOMaticGenerator(String? srcDir, String? outDir) {
+  I18nOMaticGenerator(String? srcDir, String? outDir, bool sortOutput) {
     _srcDir = srcDir;
     _outDir = outDir;
+    _sortOutput = sortOutput;
   }
 
   List<String> get foundStrings {
@@ -117,6 +120,20 @@ class I18nOMaticGenerator {
         i18nData.existingStrings[value] = null;
       }
     });
+
+    if (_sortOutput) {
+      i18nData.existingStrings = Map.fromEntries(
+        i18nData.existingStrings.entries.toList()
+          ..sort(
+            (e1, e2) {
+              if (e1.value.runtimeType != e2.value.runtimeType) {
+                return e1.value == null ? 1 : -1;
+              }
+              return e1.key.compareTo(e2.key);
+            },
+          ),
+      );
+    }
 
     print(
         'Writing ${i18nData.existingStrings.length} existing strings and ${i18nData.unusedStrings.length} unused strings in translations file');
